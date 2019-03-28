@@ -169,7 +169,9 @@ int main(int argc, char** argv)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // render your objects that you want to select using mouse interaction here
-
+			 // Todo: Render object with main camera in the loop (Slide No. 11)
+		cube1.RenderPicking(main_camera);
+		cube2.RenderPicking(main_camera);
         // Second Pass: Object Rendering (Slide No. 11)
         // Drawing object again
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -177,19 +179,6 @@ int main(int argc, char** argv)
 
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        // Todo: Render object with main camera in the loop (Slide No. 11)
-        cube1.RenderPicking(main_camera);
-        cube2.RenderPicking(main_camera);
-
-
-        /// Picking
-
-        glBindFramebuffer(GL_FRAMEBUFFER, picking_fbo);
-
-        glClearColor((GLclampf)0.0f, (GLclampf)0.0f, (GLclampf) 0.0f, (GLclampf) 0.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
         // update color of cube 1
         material->UpdateColor(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
@@ -204,10 +193,7 @@ int main(int argc, char** argv)
         glfwPollEvents();
         
         /* Swap front and back buffers */
-        glfwSwapBuffers(g_window);
 
-        /* Poll for and process events */
-        glfwPollEvents();
     }
 
     // Delete resources
